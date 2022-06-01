@@ -68,6 +68,3 @@ end
 Toggleterm.lazygit_toggle = function()
     lazyGit:toggle()
 end
--- Toggleterm.ranger_toggle = function()
---     ranger:toggle()
--- end
