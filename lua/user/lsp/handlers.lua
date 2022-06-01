@@ -73,7 +73,7 @@ local function lsp_keymaps(bufnr)
 
   --vim.api.nvim_buf_set_keymap(bufnr, "n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "go", "<cmd>Telescope diagnostics theme=dropdown<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "go", "<cmd>Telescope diagnostics<CR>", opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
 
