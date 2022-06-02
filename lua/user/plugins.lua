@@ -114,14 +114,6 @@ return packer.startup(function(use)
   }
 
   use {
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      { 'tami5/sqlite.lua', module = 'sqlite' },
-    }
-  }
-
-
-  use {
     "tpope/vim-commentary",
     ft = { "lua", "c", "h", "cpp", "py", "json", "go", "java", "vim", "hs", "sh" }
   }
@@ -129,6 +121,10 @@ return packer.startup(function(use)
   use {
     "iamcco/markdown-preview.nvim",
     run = "cd app && yarn install",
+    ft = { "markdown" },
+  }
+  use {
+    "dhruvasagar/vim-table-mode",
     ft = { "markdown" },
   }
 
