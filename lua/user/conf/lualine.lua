@@ -56,7 +56,7 @@ local file_name = {
 
 local filetype = {
   "filetype",
-  icons_enabled = false,
+  icons_enabled = true,
   icon = nil,
 }
 
@@ -119,4 +119,3 @@ lualine.setup({
   tabline = {},
   extensions = {},
 })
-
