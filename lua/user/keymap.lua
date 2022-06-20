@@ -110,8 +110,8 @@ keymap("n", "<A-h>", "<cmd>Telescope help_tags<CR>", opts)
 -- 查找最近打开的文件
 keymap("n", "<A-o>", "<cmd>Telescope oldfiles<CR>", opts)
 -- 查找 bookmarks 标记
-keymap("n", "<C-m>", "<cmd>Telescope vim_bookmarks current_file<cr>", opts)
-keymap("n", "<C-M>", "<cmd>Telescope vim_bookmarks all<cr>", opts)
+keymap("n", "<Leader>m", "<cmd>Telescope vim_bookmarks current_file<cr>", opts)
+keymap("n", "<Leader>M", "<cmd>Telescope vim_bookmarks all<cr>", opts)
 -- 查看可用主题
 keymap("n", "<A-c>", "<cmd>Telescope colorscheme<CR>", opts)
 -- 查看可用命令
