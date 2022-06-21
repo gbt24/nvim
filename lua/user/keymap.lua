@@ -17,10 +17,10 @@ keymap("x", "<", "<gv", opts)
 keymap("x", ">", ">gv", opts)
 keymap("n", "cw", "bcw", opts)
 
-keymap("n", "K", "5k", opts)
-keymap("n", "J", "5j", opts)
-keymap("n", "H", "5h", opts)
-keymap("n", "L", "5l", opts)
+keymap("n", "K", "5<Up>", opts)
+keymap("n", "J", "5<Down>", opts)
+keymap("n", "H", "5<Left>", opts)
+keymap("n", "L", "5<Right>", opts)
 keymap("n", "<C-a>", "$", opts)
 keymap("n", "<C-e>", "2<C-e>", opts)
 keymap("n", "<C-y>", "2<C-y>", opts)
@@ -44,10 +44,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n","<Leader>tl",":tabNext<CR>",opts)
-keymap("n","<Leader>th",":tabprevious<CR>",opts)
-keymap("n","<Leader>tc",":tabclose<CR>",opts)
-keymap("n","<Leader>tn",":tabnew<CR>",opts)
+keymap("n", "<Leader>tl", ":tabNext<CR>", opts)
+keymap("n", "<Leader>th", ":tabprevious<CR>", opts)
+keymap("n", "<Leader>tc", ":tabclose<CR>", opts)
+keymap("n", "<Leader>tn", ":tabnew<CR>", opts)
 
 keymap("n", "<Leader>ra", "<cmd>RnvimrToggle<CR>", opts)
 keymap("n", "<Leader>gi", ":!touch .gitignore<CR><CR>", opts)
@@ -86,7 +86,7 @@ keymap(
 
 
 -- nvim-tree
--- 按 leader 1 打开文件树
+-- 按 tt 打开文件树
 keymap("n", "tt", "<cmd>NvimTreeToggle<CR>", opts)
 -- 按 leader fc 在文件树中找到当前以打开文件的位置
 keymap("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>", opts)
