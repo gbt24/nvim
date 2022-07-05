@@ -118,6 +118,16 @@ return packer.startup(function(use)
     ft = { "lua", "c", "h", "cpp", "py", "json", "go", "java", "vim", "hs", "sh" }
   }
 
+    use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+  use {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+  } -- enhance texetobject selection
+  use "romgrk/nvim-treesitter-context" -- show class/function at the top
+
+
   use {
     "iamcco/markdown-preview.nvim",
     run = "cd app && yarn install",
