@@ -9,6 +9,11 @@ func! CompileRuncode()
     :sp
     :res -8 
     :term ./%<
+  elseif &filetype == 'rust'
+    set splitbelow
+    :sp
+    :res -8
+    :term cargo run
   elseif &filetype == 'cpp'
     set splitbelow
     exec "!g++ -std=c++11 % -Wall -o %<"
