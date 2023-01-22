@@ -2,6 +2,16 @@ local status_ok, project = pcall(require, "project_nvim")
 if not status_ok then
 	return
 end
+-- lua
+require("nvim-tree").setup({
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = true
+  },
+})
+
 project.setup({
   -- Manual mode doesn't automatically change your root directory, so you have
   -- the option to manually do so using `:ProjectRoot` command.
@@ -23,7 +33,7 @@ project.setup({
 
   -- Don't calculate root dir on specific directories
   -- Ex: { "~/.cargo/*", ... }
-  exclude_dirs = {},
+  exclude_dirs = {".git/*"},
 
   -- Show hidden files in telescope
   show_hidden = true,
@@ -37,9 +47,4 @@ project.setup({
   datapath = vim.fn.stdpath("data"),
 })
 
-local tele_status_ok, telescope = pcall(require, "telescope")
-if not tele_status_ok then
-	return
-end
-
-telescope.load_extension('projects')
+require('telescope').load_extension('projects')
