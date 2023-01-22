@@ -39,7 +39,9 @@ luac.out
 *.x86_64
 *.hex
 
-
+node_modules/
+package-lock.json
+package.json
 plugin/packer_compiled.lua
 tmp/
 .luarc.json
