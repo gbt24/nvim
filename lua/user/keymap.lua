@@ -21,8 +21,6 @@ keymap("n", "J", "5j", opts)
 keymap("n", "H", "5h", opts)
 keymap("n", "L", "5l", opts)
 keymap("n", "<C-a>", "$", opts)
-keymap("n", "<C-e>", "2<C-e>", opts)
-keymap("n", "<C-y>", "2<C-y>", opts)
 
 keymap("n", "<Leader><cr>", ":nohlsearch<CR>", opts)
 keymap("n", "=", "n", opts)
@@ -39,10 +37,10 @@ keymap("n", "s<down>", ":res +5<CR>", opts)
 keymap("n", "s<up>", ":res -5<CR>", opts)
 keymap("n", "s<right>", ":vertical resize-5<CR>", opts)
 keymap("n", "s<left>", ":vertical resize+5<CR>", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<A-l>", "<C-w>l", opts)
+keymap("n", "<A-h>", "<C-w>h", opts)
+keymap("n", "<A-k>", "<C-w>k", opts)
+keymap("n", "<A-j>", "<C-w>j", opts)
 keymap("n", "<Leader>tl", ":tabNext<CR>", opts)
 keymap("n", "<Leader>th", ":tabprevious<CR>", opts)
 keymap("n", "<Leader>tc", ":tabclose<CR>", opts)
@@ -89,9 +87,6 @@ keymap(
 keymap("n", "tt", "<cmd>NvimTreeToggle<CR>", opts)
 -- 按 leader fc 在文件树中找到当前以打开文件的位置
 keymap("n", "<leader>fc", "<cmd>NvimTreeFindFile<CR>", opts)
-
--- Format
-keymap("n", "<Leader>f", "<cmd>Format<cr>", opts)
 
 -- symbols-outline
 keymap("n", "<Leader>v", "<cmd>Lspsaga outline<CR>", opts)
