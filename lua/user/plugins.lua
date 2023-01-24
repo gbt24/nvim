@@ -129,12 +129,13 @@ return packer.startup(function(use)
   } -- enhance texetobject selection
   use "romgrk/nvim-treesitter-context" -- show class/function at the top
 
-
-  use {
+  use{
     "iamcco/markdown-preview.nvim",
-    run = "cd app && yarn install",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
     ft = { "markdown" },
   }
+
   use {
     "dhruvasagar/vim-table-mode",
     ft = { "markdown" },

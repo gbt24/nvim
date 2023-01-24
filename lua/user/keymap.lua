@@ -117,6 +117,10 @@ keymap("n", "<C-d>", "<cmd>SessionManager delete_session<cr>", opts)
 -- todo-comment
 keymap("n", "<leader>td", "<cmd>TodoTelescope<CR>", opts)
 
+-- markdown-preview
+keymap("n", "<leader>m", "<cmd>MarkdownPreviewToggle<CR>",opts)
+
+
 -- Gitsigns
 -- Navigation
 --keymap('n', '<leader>j', ':Gitsigns next_hunk<CR>', opts)
