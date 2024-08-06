@@ -1,12 +1,12 @@
 return {
   "stevearc/overseer.nvim",
   init = function()
-    vim.keymap.set("n", "<Leader>ot", "<cmd>OverseerToggle<cr>", { desc = "Toggle overseer task list" })
-    vim.keymap.set("n", "<Leader>or", "<cmd>OverseerRun<cr>", { desc = "List overseer run templates" })
+    vim.keymap.set("n", "<Leader>vt", "<cmd>OverseerToggle<cr>", { desc = "Toggle overseer task list" })
+    vim.keymap.set("n", "<Leader>vr", "<cmd>OverseerRun<cr>", { desc = "List overseer run templates" })
   end,
   config = function()
-    local overseer = require("overseer")
-    overseer.setup({
+    local overseer = require "overseer"
+    overseer.setup {
       dap = false,
       templates = { "make", "cargo", "shell", "user.run_python", "user.run_script" },
       task_list = {
@@ -19,8 +19,8 @@ return {
           ["<C-k>"] = false,
           ["<C-l>"] = false,
         },
-      }
-    })
+      },
+    }
     -- custom behavior of make templates
     overseer.add_template_hook({
       module = "^make$",
@@ -29,5 +29,5 @@ return {
       util.add_component(task_defn, "on_complete_notify")
       util.add_component(task_defn, { "display_duration", detail_level = 1 })
     end)
-  end
+  end,
 }
