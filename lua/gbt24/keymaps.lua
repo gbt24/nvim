@@ -1,5 +1,7 @@
 -- [[ Basic Keymaps ]]
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("v", "<", "<gv",{noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv",{noremap = true, silent = true })
 vim.keymap.set("n", "<leader>q", "<cmd>:q<CR>", { desc = "Quit current window" })
 vim.keymap.set("n", "<C-q>", "<cmd>:qall<CR>", { desc = "Quit all window" })
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
