@@ -9,7 +9,7 @@ local M = vim.lsp.protocol.make_client_capabilities()
 -- Load nvim-cmp
 local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not ok then
-    require('abel.util.misc').err('Could not load nvim-cmp', { title = 'LSP Capabilities' })
+    require('gbt24.config.misc').err('Could not load nvim-cmp', { title = 'LSP Capabilities' })
     return
 end
 
