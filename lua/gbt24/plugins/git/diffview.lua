@@ -1,20 +1,54 @@
+---Easily cycling through diffs for git
+
+local custom = require 'gbt24.config.custom'
+
+---@type LazyPluginSpec
 return {
-	"sindrets/diffview.nvim",
-	event = "VeryLazy",
-	cmd = { "DiffviewOpen" },
-	keys = {
-		{ "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "DiffView Open" },
-		{ "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "DiffView Close" },
-		{ "<leader>dh", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffView History" },
-	},
-	specs = {
-		{
-			"NeogitOrg/neogit",
-			optional = true,
-			opts = { integrations = { diffview = true } },
-		},
-	},
-	config = function()
-		require("gbt24.config.diffview")
-	end,
+    'sindrets/diffview.nvim',
+    cmd = {
+        'DiffviewOpen',
+        'DiffviewFileHistory',
+    },
+    keys = {
+        { '<leader>gdo', '<Cmd>DiffviewOpen<CR>', desc = 'Open' },
+        { '<leader>gdc', '<Cmd>DiffviewClose<CR>', desc = 'Close' },
+        { '<leader>gdh', '<Cmd>DiffviewFileHistory<CR>', desc = 'History' },
+        {
+            '<leader>gdf',
+            '<Cmd>DiffviewFileHistory %<CR>',
+            desc = 'Current History',
+        },
+    },
+    opts = function()
+        local actions = require 'diffview.actions'
+
+        return {
+            enhanced_diff_hl = true,
+            show_help_hints = false,
+            file_panel = {
+                win_config = {
+                    width = custom.width,
+                },
+            },
+            hooks = {
+                diff_buf_win_enter = function(_, winid)
+                    vim.wo[winid].wrap = false
+                end,
+            },
+            keymaps = {
+                view = {
+                    { 'n', 'q', actions.close, { desc = 'Close diffview' } },
+                    { 'n', '<Esc>', actions.close, { desc = 'Close diffview' } },
+                },
+                file_panel = {
+                    { 'n', 'q', actions.close, { desc = 'Close diffview' } },
+                    { 'n', '<Esc>', actions.close, { desc = 'Close diffview' } },
+                },
+                file_history_panel = {
+                    { 'n', 'q', actions.close, { desc = 'Close diffview' } },
+                    { 'n', '<Esc>', actions.close, { desc = 'Close diffview' } },
+                },
+            },
+        }
+    end,
 }
