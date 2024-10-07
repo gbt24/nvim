@@ -1,6 +1,6 @@
 vim.loader.enable()
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
@@ -19,7 +19,7 @@ vim.opt.wrap = true
 vim.opt.laststatus = 3
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -29,7 +29,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -43,7 +43,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'auto'
+vim.opt.signcolumn = "auto"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -60,10 +60,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -72,7 +72,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 5
 
 -- Big file limit
---vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
