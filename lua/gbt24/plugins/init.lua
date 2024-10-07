@@ -19,5 +19,5 @@ return {
 
 	{ import = "gbt24.plugins.ui" },
 
-	{ import = "gbt24.plugins.dap" },
+	-- { import = "gbt24.plugins.dap" },
 }
