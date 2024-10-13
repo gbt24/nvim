@@ -22,7 +22,7 @@ return { -- Autocompletion
 					"rafamadriz/friendly-snippets",
 					config = function()
 						require("luasnip.loaders.from_lua").load({
-							paths = { "~/AppData/Local/nvim/lua/gbt24/snippets" },
+							paths = { "~/.config/nvim/lua/gbt24/snippets" },
 						})
 						require("luasnip.loaders.from_vscode").lazy_load()
 					end,
