@@ -93,7 +93,7 @@ return {
     end,
     keys = {
         { '\\', '<Cmd>Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
-        { '<Leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'NeoTree toggle' } },
+        -- { '<Leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'NeoTree toggle' } },
         -- { '<leader>nb', '<Cmd>Neotree source=buffers toggle=true<CR>', { desc = '[N]eotree show [B]uffers' } },
         -- { '<leader>ng', '<Cmd>Neotree source=git_status toggle=true<CR>', { desc = '[N]eotree show [G]it status' } },
     },
