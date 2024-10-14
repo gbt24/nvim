@@ -17,6 +17,8 @@ return {
 
 	{ import = "gbt24.plugins.editor" },
 
+	{ import = "gbt24.plugins.lsp" },
+
 	{ import = "gbt24.plugins.ui" },
 
 	-- { import = "gbt24.plugins.dap" },
