@@ -372,7 +372,7 @@ M.FileFlags = {
     condition = function(self)
       return vim.api.nvim_get_option_value('modified', { buf = self.bufnr })
     end,
-    provider = ' 􀴥 ',
+    provider = ' M ',
     hl = function(self)
       return { fg = palette.text, bold = self.is_active }
     end,
@@ -464,15 +464,13 @@ M.ShowCmd = {
 }
 
 M.SearchOccurrence = {
-  condition = function ()
+  condition = function()
     return vim.v.hlsearch == 1
   end,
-  provider = function ()
-	local sinfo = vim.fn.searchcount { maxcount = 0 }
-	local search_stat = sinfo.incomplete > 0 and '[?/?]'
-		or sinfo.total > 0 and ('[%s/%s]'):format(sinfo.current, sinfo.total)
-		or ""
-        return search_stat
+  provider = function()
+    local sinfo = vim.fn.searchcount { maxcount = 0 }
+    local search_stat = sinfo.incomplete > 0 and '[?/?]' or sinfo.total > 0 and ('[%s/%s]'):format(sinfo.current, sinfo.total) or ''
+    return search_stat
   end,
 }
 
