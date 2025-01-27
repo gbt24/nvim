@@ -3,7 +3,7 @@ return {
   cmd = { 'AvanteChat', 'AvanteAsk' },
   keys = { '<leader>aa', '<leader>af' },
   version = false, -- set this if you want to always pull the latest change
-  opts = { provider = 'openai', file_selector = {
+  opts = { provider = 'copilot', file_selector = {
     provider = 'telescope',
   } },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
