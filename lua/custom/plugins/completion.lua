@@ -3,6 +3,7 @@ local custom_utils = require 'custom.utils'
 return {
   'saghen/blink.cmp',
   build = 'cargo build --release',
+  dependencies = 'rafamadriz/friendly-snippets',
   -- dependencies = {
   --   'L3MON4D3/LuaSnip',
   --   version = 'v2.*',
