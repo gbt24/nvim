@@ -48,6 +48,11 @@ require('blink.cmp').setup {
       auto_show = true,
       auto_show_delay_ms = 500,
     },
+
+    keyword = {
+      range = 'full',
+    },
+    list = { selection = { preselect = false, auto_insert = true } },
   },
   signature = {
     enabled = true,
