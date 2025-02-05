@@ -4,33 +4,21 @@ require('blink.cmp').setup {
     ['<C-d>'] = { 'scroll_documentation_down' },
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
+    default = { 'snippets', 'lsp', 'path', 'buffer' },
     providers = {
-      snippets = {
-        score_offset = 1000,
-      },
+      snippets = { score_offset = 1000 },
     },
   },
   completion = {
+    keyword = {
+      range = 'full',
+    },
     menu = {
       border = 'single',
       draw = {
         treesitter = { 'lsp' },
-        -- columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
         columns = { { 'kind_icon' }, { 'label', gap = 1 } },
         components = {
-          kind_icon = {
-            highlight = function(ctx)
-              local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-              return hl
-            end,
-          },
-          kind = {
-            highlight = function(ctx)
-              local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-              return hl
-            end,
-          },
           label = {
             text = function(ctx)
               return require('colorful-menu').blink_components_text(ctx)
@@ -48,11 +36,6 @@ require('blink.cmp').setup {
       auto_show = true,
       auto_show_delay_ms = 500,
     },
-
-    keyword = {
-      range = 'full',
-    },
-    list = { selection = { preselect = false, auto_insert = true } },
   },
   signature = {
     enabled = true,

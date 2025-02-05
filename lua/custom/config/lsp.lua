@@ -106,29 +106,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
     map('gr', require('telescope.builtin').lsp_references, 'Goto References')
 
-    ---@diagnostic disable-next-line: missing-fields
-    require('glance').setup {
-      border = {
-        enable = true, -- Show window borders. Only horizontal borders allowed
-        top_char = ' ',
-        bottom_char = '─',
-      },
-      theme = {
-        enable = true,
-        mode = 'brighten',
-      },
-    }
-
-    map('gp', function()
+    map('gp', function(opts)
       local params = vim.lsp.util.make_position_params()
       vim.lsp.buf_request(params.bufnr, 'textDocument/definition', params, function(_, result, _, _)
         if not result or vim.tbl_isempty(result) then
           vim.notify('No definition found', vim.log.levels.INFO)
         else
-          vim.cmd 'Glance definitions'
+          require('goto-preview').goto_preview_definition(opts)
         end
       end)
     end, 'Preview definition')
+    map('gP', require('goto-preview').goto_preview_declaration, 'Preview declaration')
 
     map('<leader>la', vim.lsp.buf.code_action, 'Lsp Action')
     map('<leader>rn', vim.lsp.buf.rename, 'Lsp Rename')
