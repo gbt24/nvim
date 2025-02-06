@@ -13,6 +13,7 @@ return {
     dependencies = {
       {
         'williamboman/mason.nvim',
+        event = { 'VimEnter' },
         opts = {
           pip = {
             upgrade_pip = false,

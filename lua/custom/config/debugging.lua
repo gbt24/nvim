@@ -14,40 +14,26 @@ end
 dapui.setup {
   layouts = {
     {
-      elements = {
-        {
-          id = 'stacks',
-          size = 0.25,
-        },
-        {
-          id = 'scopes',
-          size = 0.25,
-        },
-        {
-          id = 'breakpoints',
-          size = 0.25,
-        },
-        {
-          id = 'watches',
-          size = 0.25,
-        },
-      },
       position = 'left',
       size = 0.4,
+      elements = {
+        { id = 'stacks', size = 0.25 },
+        { id = 'scopes', size = 0.25 },
+        { id = 'breakpoints', size = 0.25 },
+        { id = 'watches', size = 0.25 },
+      },
     },
     {
-      elements = { {
-        id = 'repl',
-        size = 0.3,
-      }, {
-        id = 'console',
-        size = 0.7,
-      } },
       position = 'bottom',
       size = 0.2,
+      elements = {
+        { id = 'repl', size = 0.3 },
+        { id = 'console', size = 0.7 },
+      },
     },
   },
 }
+
 -- set up dressing for vim.fn.input
 require('dressing').setup()
 

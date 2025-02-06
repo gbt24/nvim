@@ -53,6 +53,10 @@ vim.keymap.set('n', '<leader>ff', function()
     end,
   }
 end, { desc = 'Find File' })
+
+-- FIXME:
+-- require('telescope').load_extension('git_submodules')
+
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fH', builtin.highlights, { desc = 'Find Highlights' })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = 'Find Keymaps' })
@@ -65,7 +69,7 @@ vim.keymap.set('n', '<leader>ls', require('aerial').toggle, { desc = 'Find Docum
 vim.keymap.set('n', '<leader>fS', builtin.lsp_dynamic_workspace_symbols, { desc = 'Find Workspace Symbols' })
 vim.keymap.set('n', '<leader>fs', function()
   if custom_utils.is_lsp_attached() then
-    builtin.lsp_document_symbols()
+    builtin.lsp_document_symbols { symbol_width = 0.8 }
   else
     require('telescope').extensions.aerial.aerial()
   end
