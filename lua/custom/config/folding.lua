@@ -36,7 +36,13 @@ end
 -- `handler` is the 2nd parameter of `setFoldVirtTextHandler`,
 -- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
 ---@diagnostic disable-next-line: missing-fields
+-- require('ufo').setup {
+--   fold_virt_text_handler = handler,
+-- }
 require('ufo').setup {
+  provider_selector = function(bufnr, filetype, buftype)
+    return { 'treesitter', 'indent' }
+  end,
   fold_virt_text_handler = handler,
 }
 

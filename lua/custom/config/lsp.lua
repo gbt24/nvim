@@ -67,10 +67,10 @@ local custom_handlers = {
 }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
-capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true,
-}
+-- capabilities.textDocument.foldingRange = {
+--   dynamicRegistration = false,
+--   lineFoldingOnly = true,
+-- }
 local function setup_server(server_name, config)
   config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
   config.handlers = vim.tbl_deep_extend('force', {}, custom_handlers, config.handlers or {})
@@ -145,7 +145,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     -- Inlay hint
     if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-      vim.lsp.inlay_hint.enable()
+      -- vim.lsp.inlay_hint.enable()
       map('<leader>th', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
       end, 'Toggle Inlay Hints')
