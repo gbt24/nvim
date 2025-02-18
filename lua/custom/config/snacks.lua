@@ -2,43 +2,71 @@
 require('snacks').setup {
   styles = { notification = { border = 'single' }, notification_history = { border = 'single', width = 0.9, height = 0.9, minimal = true } },
   indent = {
-    indent = {
-      char = ' ',
-      only_scope = true,
-      only_current = true,
-      hl = {
-        'SnacksIndent1',
-        'SnacksIndent2',
-        'SnacksIndent3',
-        'SnacksIndent4',
-        'SnacksIndent5',
-        'SnacksIndent6',
-        'SnacksIndent7',
-        'SnacksIndent8',
-      },
+    priority = 1,
+    enabled = true, -- enable indent guides
+    char = '│',
+    only_scope = false,
+    only_current = false,
+    hl = {
+      'SnacksIndent1',
+      'SnacksIndent2',
+      'SnacksIndent3',
+      'SnacksIndent4',
+      'SnacksIndent5',
+      'SnacksIndent6',
+      'SnacksIndent7',
+      'SnacksIndent8',
     },
-    animate = {
-      duration = {
-        step = 10,
-        duration = 100,
-      },
+  },
+  animate = {
+    duration = {
+      step = 10,
+      duration = 100,
     },
-    scope = {
-      enabled = true, -- enable highlighting the current scope
-      priority = 200,
-      char = '┊',
-      underline = false, -- underline the start of the scope
-      only_current = true, -- only show scope in the current window
-      hl = {
-        'SnacksIndent1',
-        'SnacksIndent2',
-        'SnacksIndent3',
-        'SnacksIndent4',
-        'SnacksIndent5',
-        'SnacksIndent6',
-        'SnacksIndent7',
-        'SnacksIndent8',
-      },
+  },
+  scope = {
+    enabled = false, -- enable highlighting the current scope
+    priority = 200,
+    char = '│',
+    underline = false, -- underline the start of the scope
+    only_current = false, -- only show scope in the current window
+    hl = {
+      'SnacksIndent1',
+      'SnacksIndent2',
+      'SnacksIndent3',
+      'SnacksIndent4',
+      'SnacksIndent5',
+      'SnacksIndent6',
+      'SnacksIndent7',
+      'SnacksIndent8',
+    },
+  },
+  chunk = {
+    -- when enabled, scopes will be rendered as chunks, except for the
+    -- top-level scope which will be rendered as a scope.
+    enabled = true,
+    -- only show chunk scopes in the current window
+    only_current = false,
+    priority = 200,
+    hl = 'SnacksIndentChunk', ---@type string|string[] hl group for chunk scopes
+    -- hl = {
+    --   'SnacksIndent1',
+    --   'SnacksIndent2',
+    --   'SnacksIndent3',
+    --   'SnacksIndent4',
+    --   'SnacksIndent5',
+    --   'SnacksIndent6',
+    --   'SnacksIndent7',
+    --   'SnacksIndent8',
+    -- },
+    char = {
+      -- corner_top = "┌",
+      -- corner_bottom = "└",
+      corner_top = '╭',
+      corner_bottom = '╰',
+      horizontal = '─',
+      vertical = '│',
+      arrow = '>',
     },
   },
   lazygit = {},
