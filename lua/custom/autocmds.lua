@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   pattern = { '*' },
   callback = function()
-    vim.api.nvim_exec('silent! normal! g`"zv', false)
+    vim.api.nvim_exec2('silent! normal! g`"zv', { output = false })
   end,
 })
 
@@ -78,4 +78,10 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
       vim.cmd 'set winfixbuf'
     end
   end,
+})
+
+vim.api.nvim_create_autocmd('ExitPre', {
+  group = vim.api.nvim_create_augroup('Exit', { clear = true }),
+  command = 'set guicursor=a:ver90',
+  desc = 'Set cursor back to beam when leaving Neovim.',
 })

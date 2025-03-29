@@ -1,6 +1,7 @@
 local pip_args
-if vim.startswith(vim.fn.hostname(), 'n819') then
-  pip_args = { '--proxy', 'http://lbproxy:8080' } -- need LbEnv
+local proxy = os.getenv 'PIP_PROXY'
+if proxy then
+  pip_args = { '--proxy', proxy }
 else
   pip_args = {}
 end
@@ -26,7 +27,6 @@ return {
           },
         },
       },
-      { 'rmagatti/goto-preview', keys = { 'gp', 'gP' }, opts = {} },
     },
     config = function()
       require 'custom.config.lsp'

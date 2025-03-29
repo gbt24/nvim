@@ -1,5 +1,6 @@
 -- UI touches
 local icons = require 'custom.ui.icons'
+local util = require 'lspconfig.util'
 vim.diagnostic.config {
   virtual_text = {
     spacing = 4,
@@ -23,6 +24,7 @@ vim.diagnostic.config {
 
 -- Main table for all LSP opts
 local servers = {
+  tinymist = {},
   lua_ls = {
     settings = {
       Lua = {
@@ -33,7 +35,6 @@ local servers = {
     },
   },
   clangd = { capabilities = { offsetEncoding = 'utf-8' }, cmd = { 'clangd' } },
-  ruff = {},
   basedpyright = {
     settings = {
       basedpyright = {
@@ -41,7 +42,6 @@ local servers = {
       },
     },
     root_dir = function(fname)
-      local util = require 'lspconfig.util'
       local dir_name = util.root_pattern(unpack {
         'pyproject.toml',
         'setup.py',
@@ -57,6 +57,23 @@ local servers = {
         return dir_name
       end
     end,
+  },
+  ruff = {},
+  marksman = {},
+  texlab = {
+    settings = {
+      texlab = {
+        diagnostics = {
+          ignoredPatterns = {
+            'Overfull',
+            'Underfull',
+            'Package hyperref Warning',
+            'Float too large for page',
+            'contains only floats',
+          },
+        },
+      },
+    },
   },
 }
 
@@ -92,31 +109,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     map('gd', function()
-      local builtin = require 'telescope.builtin'
+      vim.g.simple_indicator_on = true
       local params = vim.lsp.util.make_position_params()
       vim.lsp.buf_request(params.bufnr, 'textDocument/definition', params, function(_, result, _, _)
         if not result or vim.tbl_isempty(result) then
           vim.notify('No definition found', vim.log.levels.INFO)
         else
           -- vim.lsp.buf.definition()
-          builtin.lsp_definitions()
+          -- require('telescope.builtin').lsp_definitions()
+          require('snacks').picker.lsp_definitions()
         end
+        vim.g.simple_indicator_on = false
       end)
     end, 'Goto Definition')
     map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-    map('gr', require('telescope.builtin').lsp_references, 'Goto References')
-
-    map('gp', function(opts)
-      local params = vim.lsp.util.make_position_params()
-      vim.lsp.buf_request(params.bufnr, 'textDocument/definition', params, function(_, result, _, _)
-        if not result or vim.tbl_isempty(result) then
-          vim.notify('No definition found', vim.log.levels.INFO)
-        else
-          require('goto-preview').goto_preview_definition(opts)
-        end
-      end)
-    end, 'Preview definition')
-    map('gP', require('goto-preview').goto_preview_declaration, 'Preview declaration')
+    map('gr', function()
+      -- require('telescope.builtin').lsp_references()
+      require('snacks').picker.lsp_references()
+    end, 'Goto References')
 
     map('<leader>la', vim.lsp.buf.code_action, 'Lsp Action')
     map('<leader>rn', vim.lsp.buf.rename, 'Lsp Rename')

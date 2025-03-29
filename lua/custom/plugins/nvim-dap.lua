@@ -2,7 +2,7 @@
 return {
   {
     'mfussenegger/nvim-dap',
-    event = 'VeryLazy',
+    lazy = true,
     config = function()
       require 'custom.config.debugger'
     end,
@@ -10,6 +10,11 @@ return {
   {
     'rcarriga/nvim-dap-ui',
     dependencies = { 'mfussenegger/nvim-dap', 'theHamsta/nvim-dap-virtual-text', 'nvim-neotest/nvim-nio' },
+    keys = {
+      '<leader>db',
+      '<leader>ds',
+      '<leader>du',
+    },
     config = function()
       require('nvim-dap-virtual-text').setup() -- optional
       require('noice').setup() -- optional

@@ -27,3 +27,13 @@ vim.keymap.set('n', '<space>x', ':.lua<cr>', { desc = 'Run this line' })
 vim.keymap.set('v', '<space>x', ':lua<cr>', { desc = 'Run selection' })
 vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
 vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
+
+local feedkeys = vim.api.nvim_feedkeys
+local t = vim.api.nvim_replace_termcodes
+vim.keymap.set('n', '<leader>tz', function()
+  feedkeys(t('<leader>tg', true, true, true), 'm', false)
+  feedkeys(t('<leader>th', true, true, true), 'm', false)
+  feedkeys(t('<leader>td', true, true, true), 'm', false)
+end, { noremap = true, silent = true, desc = 'Toggle distraction free' })
+
+-- vim.keymap.set('n', '<leader>fg', custom_pickers.pick_repositories)

@@ -1,72 +1,50 @@
 ---@diagnostic disable: missing-fields
 require('snacks').setup {
-  styles = { notification = { border = 'single' }, notification_history = { border = 'single', width = 0.9, height = 0.9, minimal = true } },
+  styles = {
+    notification = { border = 'single' },
+    notification_history = { border = 'single', width = 0.9, height = 0.9, minimal = true },
+    snacks_image = {
+      border = 'single',
+    },
+  },
   indent = {
-    priority = 1,
-    enabled = true, -- enable indent guides
-    char = '│',
-    only_scope = false,
-    only_current = false,
-    hl = {
-      'SnacksIndent1',
-      'SnacksIndent2',
-      'SnacksIndent3',
-      'SnacksIndent4',
-      'SnacksIndent5',
-      'SnacksIndent6',
-      'SnacksIndent7',
-      'SnacksIndent8',
+    indent = {
+      char = ' ',
+      only_scope = true,
+      only_current = true,
+      hl = {
+        'SnacksIndent1',
+        'SnacksIndent2',
+        'SnacksIndent3',
+        'SnacksIndent4',
+        'SnacksIndent5',
+        'SnacksIndent6',
+        'SnacksIndent7',
+        'SnacksIndent8',
+      },
     },
-  },
-  animate = {
-    duration = {
-      step = 10,
-      duration = 100,
+    animate = {
+      duration = {
+        step = 10,
+        duration = 100,
+      },
     },
-  },
-  scope = {
-    enabled = false, -- enable highlighting the current scope
-    priority = 200,
-    char = '│',
-    underline = false, -- underline the start of the scope
-    only_current = false, -- only show scope in the current window
-    hl = {
-      'SnacksIndent1',
-      'SnacksIndent2',
-      'SnacksIndent3',
-      'SnacksIndent4',
-      'SnacksIndent5',
-      'SnacksIndent6',
-      'SnacksIndent7',
-      'SnacksIndent8',
-    },
-  },
-  chunk = {
-    -- when enabled, scopes will be rendered as chunks, except for the
-    -- top-level scope which will be rendered as a scope.
-    enabled = true,
-    -- only show chunk scopes in the current window
-    only_current = false,
-    priority = 200,
-    hl = 'SnacksIndentChunk', ---@type string|string[] hl group for chunk scopes
-    -- hl = {
-    --   'SnacksIndent1',
-    --   'SnacksIndent2',
-    --   'SnacksIndent3',
-    --   'SnacksIndent4',
-    --   'SnacksIndent5',
-    --   'SnacksIndent6',
-    --   'SnacksIndent7',
-    --   'SnacksIndent8',
-    -- },
-    char = {
-      -- corner_top = "┌",
-      -- corner_bottom = "└",
-      corner_top = '╭',
-      corner_bottom = '╰',
-      horizontal = '─',
-      vertical = '│',
-      arrow = '>',
+    scope = {
+      enabled = true, -- enable highlighting the current scope
+      priority = 200,
+      char = '┊',
+      underline = false, -- underline the start of the scope
+      only_current = true, -- only show scope in the current window
+      hl = {
+        'SnacksIndent1',
+        'SnacksIndent2',
+        'SnacksIndent3',
+        'SnacksIndent4',
+        'SnacksIndent5',
+        'SnacksIndent6',
+        'SnacksIndent7',
+        'SnacksIndent8',
+      },
     },
   },
   lazygit = {},
@@ -80,7 +58,7 @@ require('snacks').setup {
           key = 'f',
           desc = 'Find files',
           action = function()
-            require('telescope.builtin').find_files()
+            Snacks.picker.files()
           end,
         },
         {
@@ -88,12 +66,12 @@ require('snacks').setup {
           key = 'o',
           desc = 'Find history',
           action = function()
-            require('telescope.builtin').oldfiles()
+            Snacks.picker.recent()
           end,
         },
-        { icon = ' ', key = 'n', desc = 'New file', action = ':enew' },
-        { icon = ' ', key = 'c', desc = 'Config', action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+        { icon = ' ', key = 'e', desc = 'New file', action = ':enew' },
         { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
+        { icon = ' ', key = 'P', desc = 'Lazy Profile', action = ':Lazy profile', enabled = package.loaded.lazy ~= nil },
         { icon = ' ', key = 'M', desc = 'Mason', action = ':Mason', enabled = package.loaded.lazy ~= nil },
         { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
       },
@@ -116,9 +94,51 @@ require('snacks').setup {
   statuscolumn = {
     folds = {
       open = true, -- show open fold icons
-      git_hl = false, -- use Git Signs hl for fold icons
+      git_hl = true, -- use Git Signs hl for fold icons
     },
   },
+  image = {
+    enabled = true,
+    doc = {
+      enabled = true,
+      inline = false,
+      float = true,
+      max_width = 40,
+      max_height = 30,
+    },
+    resolve = function(_, src)
+      local vault_path = vim.fn.expand '~' .. '/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian Vault'
+
+      -- when the file path is *attachments/*
+      local att_path = src:match '(attachments/.*)'
+      if att_path then
+        return vault_path .. '/' .. att_path
+      end
+
+      -- when the file path is pure basename without any directory component
+      if not src:match '[/\\]' then
+        return vault_path .. '/attachments/' .. src
+      end
+
+      -- when the file path is absolute path
+      if src:match '^/' then
+        return src
+      end
+
+      return src
+    end,
+  },
+  picker = {
+    matcher = {
+      frecency = true,
+      cwd_bonus = true,
+      history_bonus = true,
+    },
+    formatters = {
+      icon_width = 3,
+    },
+  },
+  terminal = {},
 }
 
 ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
