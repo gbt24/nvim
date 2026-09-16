@@ -1,0 +1,4 @@
+.xdg/
+*.log
+.DS_Store
+
