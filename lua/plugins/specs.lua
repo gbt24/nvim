@@ -25,6 +25,7 @@ return {
   branch("nvim-lua/plenary.nvim", "master"),
 
   stable("stevearc/oil.nvim"),
+  stable("stevearc/aerial.nvim"),
 
   branch("nvim-treesitter/nvim-treesitter", "main"),
   stable("mason-org/mason.nvim"),

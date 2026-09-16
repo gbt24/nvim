@@ -79,6 +79,7 @@ function M.setup()
     { "<leader>f", group = "find" },
     { "<leader>g", group = "git" },
     { "<leader>p", group = "packages" },
+    { "<leader>s", group = "symbols" },
     { "<leader>t", group = "terminal" },
     { "<leader>x", group = "diagnostics" },
   })

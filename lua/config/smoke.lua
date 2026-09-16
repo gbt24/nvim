@@ -1,6 +1,7 @@
 local M = {}
 
 local required_modules = {
+  "aerial",
   "blink.cmp",
   "catppuccin",
   "conform",
@@ -58,6 +59,11 @@ function M.run()
     if vim.fn.exists(":" .. command) ~= 2 then
       failures[#failures + 1] = "missing command: " .. command
     end
+  end
+
+  local outline_map = vim.fn.maparg("<leader>so", "n", false, true)
+  if type(outline_map.callback) ~= "function" then
+    failures[#failures + 1] = "missing symbols outline keymap: <leader>so"
   end
 
   for name, callback in pairs({

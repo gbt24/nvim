@@ -8,6 +8,7 @@
 
 - Catppuccin Mocha、状态栏、buffer 标签、快捷键提示和诊断面板
 - Snacks Explorer、Oil 与 Snacks Picker 文件/文本/符号/诊断搜索
+- Aerial 右侧常驻符号大纲，随当前文件自动更新
 - Grug Far 项目级搜索替换
 - Treesitter 高亮、缩进和折叠
 - 自动识别缩进，扩展文本对象和 surround 编辑
@@ -118,6 +119,7 @@ Leader 键为 `<Space>`。
 | `<leader>fn` | 搜索通知历史 |
 | `<leader>fR` | 项目级搜索替换；Visual 模式使用选区 |
 | `<leader>fs` / `<leader>fS` | 当前文件 / 工作区符号 |
+| `<leader>so` | 手动切换右侧符号大纲；打开后随当前文件更新 |
 | `<leader>xx` / `<leader>xX` | 搜索工作区 / 当前文件诊断 |
 | `<leader>xs` | 搜索当前文件 LSP 符号 |
 | `<leader>cf` | 格式化 |

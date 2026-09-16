@@ -1,5 +1,10 @@
 {
   "plugins": {
+    "aerial.nvim": {
+      "rev": "ac583c330f95bc9731c7cdf71123c0f76d1b0385",
+      "src": "https://github.com/stevearc/aerial.nvim",
+      "version": ">=0.0.0"
+    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",
