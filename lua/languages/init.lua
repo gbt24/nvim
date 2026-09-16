@@ -21,6 +21,10 @@ M.mason_packages = {
   "marksman",
   "prettier",
   "markdownlint-cli2",
+  "debugpy",
+  "js-debug-adapter",
+  "codelldb",
+  "local-lua-debugger-vscode",
 }
 
 M.treesitter_parsers = {

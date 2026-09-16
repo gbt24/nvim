@@ -13,6 +13,8 @@
 - Treesitter 高亮、缩进和折叠
 - 自动识别缩进，扩展文本对象和 surround 编辑
 - LSP、Blink.cmp、LazyDev、snippets、保存格式化和延迟 lint
+- Python、TypeScript、C/C++ 与 Lua 断点调试、变量/调用栈检查和调试 REPL
+- Python、Lua、JavaScript 与可选 TypeScript 交互式 REPL，可发送行、选区和代码块
 - TypeScript、Python、C、C++、Lua 和 Markdown 工具链
 - Gitsigns 与 Diffview，只读查看 diff/历史并辅助处理冲突
 - 浮动、底部、右侧命名终端
@@ -34,6 +36,8 @@
 - sudo（使用 Suda 时）
 - Nerd Font
 - OpenCode CLI 1.17+、`pgrep`、`lsof`
+- Node.js、Python 3 与 Lua（对应语言的调试/REPL）
+- 项目本地 `tsx`（启动 TypeScript 调试）和 `ts-node`（运行 TypeScript 选区）
 - Rust/Cargo 1.88+（仅在需要从源码编译 Blink.cmp matcher 时使用；稳定版通常使用预编译库）
 
 系统工具由你自己的包管理器安装；bootstrap 不修改 shell、字体或系统配置，也不处理 OpenCode 登录。
@@ -123,6 +127,11 @@ Leader 键为 `<Space>`。
 | `<leader>xx` / `<leader>xX` | 搜索工作区 / 当前文件诊断 |
 | `<leader>xs` | 搜索当前文件 LSP 符号 |
 | `<leader>cf` | 格式化 |
+| `<leader>dc` / `<leader>db` | 启动或继续调试 / 切换断点 |
+| `<leader>dn` / `<leader>di` / `<leader>do` | 单步越过 / 进入 / 跳出 |
+| `<leader>de` / `<leader>du` / `<leader>dt` | 求值 / 切换调试界面 / 停止调试 |
+| `<leader>rr` / `<leader>rl` / Visual `<leader>rs` | 切换 REPL / 发送当前行 / 发送选区 |
+| `<leader>rb` / `<leader>rn` | 发送当前代码块 / 发送后移至下一块 |
 | `<leader>gg` / `<leader>gh` | Git diff / 当前文件历史 |
 | `<leader>tf` / `<leader>tb` / `<leader>tr` | 浮动 / 底部 / 右侧终端 |
 | `<leader>aa` / `<leader>as` | 询问 OpenCode / OpenCode 操作 |
@@ -132,6 +141,46 @@ Leader 键为 `<Space>`。
 在终端模式下按两次 `<Esc>` 返回 Normal 模式。LSP attach 后可使用 `gd`、`grr`、`K`、`<leader>ca`、`<leader>cr` 和 `<leader>ci`。
 
 使用 `:SudaRead` 和 `:SudaWrite` 显式读取或保存需要管理员权限的文件。配置没有启用 Suda smart edit，因此不会自动触发提权。
+
+### 调试与运行代码
+
+首次 bootstrap 会通过 Mason 安装 `debugpy`、`js-debug-adapter`、`codelldb` 和
+`local-lua-debugger-vscode`。Python 会优先使用项目中的 `.venv` 或 `venv`；TypeScript
+调试当前文件要求项目安装 `tsx`，也可以使用 attach 配置连接已经启动的 Node 进程。
+C/C++ 调试前应使用 `-g` 编译，并在启动时选择生成的可执行文件。
+
+交互式 REPL 按项目目录隔离。Python 的 `# %%` 或 `#%%` 可作为代码块分隔符。
+TypeScript REPL 需要项目本地安装 `ts-node`。C/C++ 不支持脱离编译上下文执行任意选区；
+请构建并调试完整程序，或在断点暂停时用 `<leader>de` 求值表达式。
+
+调试快捷键：
+
+| 快捷键 | 功能 |
+| --- | --- |
+| `<leader>dc` | 启动或继续调试，并选择当前语言的启动配置 |
+| `<leader>db` / `<leader>dB` | 切换普通断点 / 添加条件断点 |
+| `<leader>dn` / `<leader>di` / `<leader>do` | 单步越过 / 进入 / 跳出 |
+| `<leader>dl` | 重复上一次调试会话 |
+| `<leader>dr` | 切换 DAP 调试 REPL |
+| `<leader>de` | 求值光标下表达式；Visual 模式求值选区 |
+| `<leader>du` | 手动切换调试面板 |
+| `<leader>dt` | 终止调试 |
+
+`<leader>du` 和 `<leader>de` 需要活动调试会话；尚未启动调试时会显示提示，而不会打开空面板。
+
+交互运行快捷键：
+
+| 快捷键 | 模式 | 功能 |
+| --- | --- | --- |
+| `<leader>rr` | Normal | 切换当前语言 REPL |
+| `<leader>rR` | Normal | 重启当前 REPL |
+| `<leader>rf` / `<leader>rh` | Normal | 聚焦 / 隐藏 REPL |
+| `<leader>rl` | Normal | 发送当前行 |
+| `<leader>rs` | Visual | 发送选区 |
+| `<leader>rm{motion}` | Normal | 发送一个 motion 范围 |
+| `<leader>rF` | Normal | 发送整个文件 |
+| `<leader>rb` / `<leader>rn` | Normal | 发送代码块 / 发送并移动到下一块 |
+| `<leader>ri` / `<leader>rq` / `<leader>rc` | Normal | 中断 / 退出 / 清空 REPL |
 
 ## 目录结构
 

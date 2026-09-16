@@ -50,6 +50,11 @@
       "src": "https://github.com/NMAC427/guess-indent.nvim",
       "version": "'main'"
     },
+    "iron.nvim": {
+      "rev": "0168b419bc7df70cd2d97c2ec8158b6b002450b2",
+      "src": "https://github.com/Vigemus/iron.nvim",
+      "version": "'master'"
+    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim",
@@ -85,6 +90,16 @@
       "src": "https://github.com/MunifTanjim/nui.nvim",
       "version": ">=0.0.0"
     },
+    "nvim-dap": {
+      "rev": "6a5bba0ddea5d419a783e170c20988046376090d",
+      "src": "https://github.com/mfussenegger/nvim-dap",
+      "version": ">=0.0.0"
+    },
+    "nvim-dap-ui": {
+      "rev": "f7d75cca202b52a60c520ec7b1ec3414d6e77b0f",
+      "src": "https://github.com/rcarriga/nvim-dap-ui",
+      "version": ">=0.0.0"
+    },
     "nvim-lint": {
       "rev": "3d55c8f67c6ae5c15e1042571e107c7a3d5c5f4e",
       "src": "https://github.com/mfussenegger/nvim-lint",
@@ -93,6 +108,11 @@
     "nvim-lspconfig": {
       "rev": "b89138d9af0a96e6048e202a15765fc6b6416bd4",
       "src": "https://github.com/neovim/nvim-lspconfig",
+      "version": ">=0.0.0"
+    },
+    "nvim-nio": {
+      "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
+      "src": "https://github.com/nvim-neotest/nvim-nio",
       "version": ">=0.0.0"
     },
     "nvim-treesitter": {

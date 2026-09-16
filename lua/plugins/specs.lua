@@ -37,6 +37,11 @@ return {
   stable("stevearc/conform.nvim"),
   branch("mfussenegger/nvim-lint", "master"),
 
+  stable("mfussenegger/nvim-dap"),
+  stable("nvim-neotest/nvim-nio"),
+  stable("rcarriga/nvim-dap-ui"),
+  branch("Vigemus/iron.nvim", "master"),
+
   branch("NMAC427/guess-indent.nvim", "main"),
   stable("nvim-mini/mini.nvim"),
   stable("MagicDuck/grug-far.nvim"),

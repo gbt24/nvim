@@ -11,6 +11,10 @@ local required_modules = {
   "lint",
   "lualine",
   "mason",
+  "dap",
+  "dapui",
+  "nio",
+  "iron.core",
   "mini.ai",
   "mini.surround",
   "nvim-treesitter",
@@ -27,6 +31,11 @@ local required_modules = {
 
 function M.run()
   local failures = {}
+
+  local debug_ok, debug_error = pcall(require("plugins.debug").ensure)
+  if not debug_ok then
+    failures[#failures + 1] = "debug lazy setup: " .. tostring(debug_error)
+  end
 
   for _, module in ipairs(required_modules) do
     local ok, err = pcall(require, module)
@@ -45,9 +54,11 @@ function M.run()
 
   local required_commands = {
     "ConfigHealth",
+    "DapContinue",
     "Format",
     "GitDiff",
     "GitHistory",
+    "IronRepl",
     "Lint",
     "PluginsUpdate",
     "SearchReplace",
@@ -64,6 +75,37 @@ function M.run()
   local outline_map = vim.fn.maparg("<leader>so", "n", false, true)
   if type(outline_map.callback) ~= "function" then
     failures[#failures + 1] = "missing symbols outline keymap: <leader>so"
+  end
+
+  for _, adapter in ipairs({ "python", "pwa-node", "codelldb", "local-lua" }) do
+    if require("dap").adapters[adapter] == nil then
+      failures[#failures + 1] = "missing DAP adapter: " .. adapter
+    end
+  end
+
+  for _, lhs in ipairs({ "<leader>dc", "<leader>db", "<leader>rr", "<leader>rl" }) do
+    local mapping = vim.fn.maparg(lhs, "n", false, true)
+    if vim.tbl_isempty(mapping) then
+      failures[#failures + 1] = "missing keymap: " .. lhs
+    end
+  end
+
+  local ui_map = vim.fn.maparg("<leader>du", "n", false, true)
+  local original_notify = vim.notify
+  local no_session_notice = false
+  vim.notify = function(message, level, options)
+    if tostring(message):find("No active debug session", 1, true) then
+      no_session_notice = true
+    else
+      original_notify(message, level, options)
+    end
+  end
+  local ui_ok, ui_error = pcall(ui_map.callback)
+  vim.notify = original_notify
+  if not ui_ok then
+    failures[#failures + 1] = "debug UI without a session: " .. tostring(ui_error)
+  elseif not no_session_notice then
+    failures[#failures + 1] = "debug UI did not guard a missing session"
   end
 
   for name, callback in pairs({

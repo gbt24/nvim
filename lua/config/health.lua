@@ -46,6 +46,9 @@ function M.check()
   executable("pgrep", false)
   executable("lsof", false)
   executable("sudo", false)
+  executable("node", false)
+  executable("python3", false)
+  executable("lua", false)
   version_at_least("tree-sitter", "0.26.1")
   version_at_least("opencode", "1.17.0")
 
@@ -69,8 +72,30 @@ function M.check()
     "marksman",
     "prettier",
     "markdownlint-cli2",
+    "debugpy-adapter",
+    "js-debug-adapter",
+    "codelldb",
   }) do
     executable(name, false)
+  end
+
+  vim.health.start("Debugging and REPL")
+  if vim.fn.executable("tsx") == 1 then
+    vim.health.ok("tsx is available for TypeScript debugging")
+  else
+    vim.health.info("Install tsx in a TypeScript project to launch the current file")
+  end
+  if vim.fn.executable("ts-node") == 1 then
+    vim.health.ok("ts-node is available for the TypeScript REPL")
+  else
+    vim.health.info("Install ts-node in a TypeScript project to enable its REPL")
+  end
+
+  local lua_adapter = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "local-lua-debugger-vscode")
+  if vim.uv.fs_stat(lua_adapter) then
+    vim.health.ok("local-lua-debugger-vscode is installed")
+  else
+    vim.health.warn("local-lua-debugger-vscode is not installed")
   end
 
   local lockfile = vim.fs.joinpath(vim.fn.stdpath("config"), "nvim-pack-lock.json")
