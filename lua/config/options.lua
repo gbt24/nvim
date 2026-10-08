@@ -6,6 +6,7 @@ opt.cursorline = true
 opt.signcolumn = "yes"
 opt.colorcolumn = "100"
 opt.termguicolors = true
+opt.autoread = true
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 

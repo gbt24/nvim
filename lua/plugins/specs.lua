@@ -45,7 +45,7 @@ return {
   branch("NMAC427/guess-indent.nvim", "main"),
   stable("nvim-mini/mini.nvim"),
   stable("MagicDuck/grug-far.nvim"),
-  branch("lambdalisue/vim-suda", "main", "suda.vim"),
+  branch("lambdalisue/vim-suda", "master", "suda.vim"),
 
   stable("lewis6991/gitsigns.nvim"),
   branch("sindrets/diffview.nvim", "main"),
