@@ -3,7 +3,7 @@ local M = {}
 M.servers = {
   "vtsls",
   "eslint",
-  "basedpyright",
+  "pyright",
   "clangd",
   "lua_ls",
   "marksman",
@@ -12,7 +12,7 @@ M.servers = {
 M.mason_packages = {
   "vtsls",
   "eslint-lsp",
-  "basedpyright",
+  "pyright",
   "ruff",
   "clangd",
   "clang-format",

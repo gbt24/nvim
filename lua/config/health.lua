@@ -63,7 +63,7 @@ function M.check()
   for _, name in ipairs({
     "vtsls",
     "vscode-eslint-language-server",
-    "basedpyright-langserver",
+    "pyright-langserver",
     "ruff",
     "clangd",
     "clang-format",

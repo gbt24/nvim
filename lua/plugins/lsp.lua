@@ -1,5 +1,16 @@
 local M = {}
 
+local function with_chinese_locale(config)
+  local before_init = config.before_init
+  config.before_init = function(params, client_config)
+    if before_init then
+      before_init(params, client_config)
+    end
+    params.locale = "zh-CN"
+  end
+  return config
+end
+
 local function on_attach(event)
   local buffer = event.buf
   local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -56,10 +67,10 @@ function M.setup()
       capabilities = capabilities,
       settings = { workingDirectory = { mode = "auto" } },
     },
-    basedpyright = {
+    pyright = {
       capabilities = capabilities,
       settings = {
-        basedpyright = {
+        python = {
           analysis = { typeCheckingMode = "standard", autoImportCompletions = true },
         },
       },
@@ -82,7 +93,7 @@ function M.setup()
   }
 
   for name, config in pairs(configs) do
-    vim.lsp.config(name, config)
+    vim.lsp.config(name, with_chinese_locale(config))
   end
   vim.lsp.enable(require("languages").servers)
 

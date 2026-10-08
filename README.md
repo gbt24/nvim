@@ -13,6 +13,7 @@
 - Treesitter 高亮、缩进和折叠
 - 自动识别缩进，扩展文本对象和 surround 编辑
 - LSP、Blink.cmp、LazyDev、snippets、保存格式化和延迟 lint
+- LSP 初始化时请求 `zh-CN`；支持该参数的服务器会优先返回中文内置信息
 - Python、TypeScript、C/C++ 与 Lua 断点调试、变量/调用栈检查和调试 REPL
 - Python、Lua、JavaScript 与可选 TypeScript 交互式 REPL，可发送行、选区和代码块
 - TypeScript、Python、C、C++、Lua 和 Markdown 工具链
@@ -139,6 +140,8 @@ Leader 键为 `<Space>`。
 | `<leader>pu` | 检查并审阅插件更新 |
 
 在终端模式下按两次 `<Esc>` 返回 Normal 模式。LSP attach 后可使用 `gd`、`grr`、`K`、`<leader>ca`、`<leader>cr` 和 `<leader>ci`。
+
+所有语言服务器都会收到标准 LSP `locale = "zh-CN"` 初始化参数。`vtsls` 等支持该参数的服务器可将部分诊断和内置提示本地化；`K` 仍直接显示服务器返回的 hover 内容，因此第三方库的英文注释、Python docstring 和 TypeScript 声明文档不会被自动翻译。Python LSP 使用 Pyright，类型检查级别为 `standard`。
 
 使用 `:SudaRead` 和 `:SudaWrite` 显式读取或保存需要管理员权限的文件。配置没有启用 Suda smart edit，因此不会自动触发提权。
 
