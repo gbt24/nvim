@@ -146,7 +146,7 @@ Leader 键为 `<Space>`。
 
 tmux 端需配置插件官方的智能按键转发，见 [vim-tmux-navigator 安装说明](https://github.com/christoomey/vim-tmux-navigator#tmux)。本机 `~/.tmux.conf` 已包含该配置，修改后可执行 `tmux source-file ~/.tmux.conf` 重新加载。tmux 的 window 切换独立于 pane 导航。
 
-所有语言服务器都会收到标准 LSP `locale = "zh-CN"` 初始化参数。`vtsls` 等支持该参数的服务器可将部分诊断和内置提示本地化；`K` 仍直接显示服务器返回的 hover 内容，因此第三方库的英文注释、Python docstring 和 TypeScript 声明文档不会被自动翻译。Python LSP 使用 Pyright，类型检查级别为 `standard`。
+所有语言服务器都会收到标准 LSP `locale = "zh-CN"` 初始化参数。`vtsls` 等支持该参数的服务器可将部分诊断和内置提示本地化；`K` 仍直接显示服务器返回的 hover 内容，因此第三方库的英文注释、Python docstring 和 TypeScript 声明文档不会被自动翻译。Python LSP 使用 BasedPyright，类型检查级别为 `standard`，开启自动导入补全；Ruff 负责 lint 和格式化。项目中的 `pyrightconfig.json` 或 `pyproject.toml` 可覆盖类型检查级别。
 
 使用 `:SudaRead` 和 `:SudaWrite` 显式读取或保存需要管理员权限的文件。配置没有启用 Suda smart edit，因此不会自动触发提权。
 

@@ -67,10 +67,10 @@ function M.setup()
       capabilities = capabilities,
       settings = { workingDirectory = { mode = "auto" } },
     },
-    pyright = {
+    basedpyright = {
       capabilities = capabilities,
       settings = {
-        python = {
+        basedpyright = {
           analysis = { typeCheckingMode = "standard", autoImportCompletions = true },
         },
       },

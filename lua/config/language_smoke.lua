@@ -5,7 +5,7 @@ local cases = {
   {
     file = "example.py",
     filetype = "python",
-    clients = { "pyright" },
+    clients = { "basedpyright" },
     formatter = "ruff_format",
     linter = "ruff",
   },
