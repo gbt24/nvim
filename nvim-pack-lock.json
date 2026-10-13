@@ -150,6 +150,11 @@
       "src": "https://github.com/lambdalisue/vim-suda",
       "version": "'master'"
     },
+    "vim-tmux-navigator": {
+      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "src": "https://github.com/christoomey/vim-tmux-navigator",
+      "version": "'master'"
+    },
     "which-key.nvim": {
       "rev": "fcbf4eea17cb299c02557d576f0d568878e354a4",
       "src": "https://github.com/folke/which-key.nvim",

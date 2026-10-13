@@ -26,6 +26,10 @@ function M.ensure_all()
 end
 
 function M.setup()
+  vim.g.tmux_navigator_no_mappings = 1
+  vim.g.tmux_navigator_disable_when_zoomed = 1
+  require("core.loader").load("vim-tmux-navigator")
+
   local map = vim.keymap.set
 
   map("n", "<leader>e", function()

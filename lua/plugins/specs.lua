@@ -26,6 +26,7 @@ return {
 
   stable("stevearc/oil.nvim"),
   stable("stevearc/aerial.nvim"),
+  branch("christoomey/vim-tmux-navigator", "master"),
 
   branch("nvim-treesitter/nvim-treesitter", "main"),
   stable("mason-org/mason.nvim"),

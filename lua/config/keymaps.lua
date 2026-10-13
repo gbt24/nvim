@@ -1,10 +1,10 @@
 local map = vim.keymap.set
 
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
-map("n", "<C-h>", "<C-w>h", { desc = "Window left" })
-map("n", "<C-j>", "<C-w>j", { desc = "Window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "Window up" })
-map("n", "<C-l>", "<C-w>l", { desc = "Window right" })
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Window/pane left", silent = true })
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Window/pane down", silent = true })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Window/pane up", silent = true })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Window/pane right", silent = true })
 map("n", "<A-j>", "<cmd>move .+1<cr>==", { desc = "Move line down" })
 map("n", "<A-k>", "<cmd>move .-2<cr>==", { desc = "Move line up" })
 map("v", "<A-j>", ":move '>+1<cr>gv=gv", { desc = "Move selection down" })

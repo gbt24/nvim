@@ -118,6 +118,7 @@ Leader 键为 `<Space>`。
 
 | 快捷键 | 功能 |
 | --- | --- |
+| `Ctrl+h/j/k/l` | 向左/下/上/右切换 Neovim 分屏；到边缘后切换 tmux pane |
 | `<leader>e` / `<leader>E` | 切换文件树 / 定位当前文件 |
 | `<leader>fo` | 使用 Oil 编辑当前目录 |
 | `<leader>ff` / `<leader>fg` | 搜索文件 / 搜索文本 |
@@ -140,6 +141,10 @@ Leader 键为 `<Space>`。
 | `<leader>pu` | 检查并审阅插件更新 |
 
 在终端模式下按两次 `<Esc>` 返回 Normal 模式。LSP attach 后可使用 `gd`、`grr`、`K`、`<leader>ca`、`<leader>cr` 和 `<leader>ci`。
+
+`vim-tmux-navigator` 提供 Normal 模式下的统一导航；不在 tmux 内时仍可切换 Neovim 分屏。tmux pane 放大时，导航限制在 Neovim 内，不会自动取消放大。Neovim 内置终端中先按两次 `<Esc>`，再使用导航快捷键。
+
+tmux 端需配置插件官方的智能按键转发，见 [vim-tmux-navigator 安装说明](https://github.com/christoomey/vim-tmux-navigator#tmux)。本机 `~/.tmux.conf` 已包含该配置，修改后可执行 `tmux source-file ~/.tmux.conf` 重新加载。tmux 的 window 切换独立于 pane 导航。
 
 所有语言服务器都会收到标准 LSP `locale = "zh-CN"` 初始化参数。`vtsls` 等支持该参数的服务器可将部分诊断和内置提示本地化；`K` 仍直接显示服务器返回的 hover 内容，因此第三方库的英文注释、Python docstring 和 TypeScript 声明文档不会被自动翻译。Python LSP 使用 Pyright，类型检查级别为 `standard`。
 
